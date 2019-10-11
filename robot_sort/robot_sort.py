@@ -93,40 +93,26 @@ class SortingRobot:
         return self._light == "ON"
 
     def sort(self):
-        """
-        Sort the robot's list.
-        """
-        # Fill this out
-        self._list = self.merge(self._list)
-        return self._list
-        # pass
-    
-    def merge_self(self,left, right):
-        sorted_array = []
-        while (len(left) and len(right)):
-            if(left[0] < right[0]):
-            #    print(sorted_array) 
-               sorted_array.append(left.pop(0))
-            else:
-               sorted_array.append(right.pop(0))
-               
-        while(len(left)):
-            sorted_array.append(left.pop(0))
-            
-        while(len(right)):
-            sorted_array.append(right.pop(0))
-        return sorted_array
         
-    def merge(self,list_arr):
-        if(len(list_arr) < 2):
-            return list_arr
-        middle = len(list_arr) // 2
-        l = list_arr[:middle]
-        r = list_arr[middle:]
-        left = self.merge(l)
-        right = self.merge(r)
-        return self.merge_self(left,right)
-
+        while True:
+            self.set_light_off() # start with lights off (no swaps)
+            while self.can_move_left(): # return back to start of loop
+                self.move_left()
+            while self.can_move_right(): # traverse the loop
+                self.swap_item() # pick up item
+                self.move_right(); # move to the right to compare
+                if self.compare_item() == 1: # confirm held item with item at current position
+                    # swap item and turn lights on
+                    self.set_light_on()
+                    self.swap_item()
+                # move back, drop item and move right for next iteration
+                self.move_left()
+                self.swap_item()
+                self.move_right()
+            # stop the loop when there are no swaps
+            if self.light_is_on() == False:
+                break
+        
 
 if __name__ == "__main__":
     # Test our your implementation from the command line

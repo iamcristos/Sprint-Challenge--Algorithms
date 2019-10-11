@@ -2,13 +2,13 @@
 
 ## Exercise I
 
-a) Linear time complexity because the number of operations will increase n times as the data set increases.
+a) O(n^3) time complexity because the number of operations will increase n **3 times as the data set increases.
 
 
 b) O(n^2) because the number of operations will increase n^2 times as the data set increases
 
 
-c) Constant time because the number of operations is constant irrespective of the data size.
+c) Linear time because the number of operations is linear irrespective of the data size.
 
 ## Exercise II
 
