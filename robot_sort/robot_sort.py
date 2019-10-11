@@ -97,7 +97,8 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        return self.merge(self._list)
+        self._list = self.merge(self._list)
+        return self._list
         # pass
     
     def merge_self(self,left, right):
@@ -114,7 +115,6 @@ class SortingRobot:
             
         while(len(right)):
             sorted_array.append(right.pop(0))
-        print(sorted_array)
         return sorted_array
         
     def merge(self,list_arr):
