@@ -97,15 +97,43 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        return self.merge(self._list)
+        # pass
+    
+    def merge_self(self,left, right):
+        sorted_array = []
+        while (len(left) and len(right)):
+            if(left[0] < right[0]):
+            #    print(sorted_array) 
+               sorted_array.append(left.pop(0))
+            else:
+               sorted_array.append(right.pop(0))
+               
+        while(len(left)):
+            sorted_array.append(left.pop(0))
+            
+        while(len(right)):
+            sorted_array.append(right.pop(0))
+        print(sorted_array)
+        return sorted_array
+        
+    def merge(self,list_arr):
+        if(len(list_arr) < 2):
+            return list_arr
+        middle = len(list_arr) // 2
+        l = list_arr[:middle]
+        r = list_arr[middle:]
+        left = self.merge(l)
+        right = self.merge(r)
+        return self.merge_self(left,right)
 
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
 
-    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
-
+    # l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    l = [5, 2, 1, 3, 4]
     robot = SortingRobot(l)
 
     robot.sort()
